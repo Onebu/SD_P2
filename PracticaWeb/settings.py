@@ -17,8 +17,6 @@ import django_heroku
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'nq1s95$(1gu&kup#9r@ey+n8w^0dtjq^9_lq6oy6ktlf!t!3ow'
@@ -29,6 +27,19 @@ DEBUG = False
 
 ALLOWED_HOSTS = ['127.0.0.1', '.herokuapp.com']
 
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_URL = '/static/'
+
+# Extra places for collectstatic to find static files.
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static'),
+)
+
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+MEDIA_ROOT = os.path.join(BASE_DIR, "media_cdn")
+
+MEDIA_URL = '/media/'
 
 
 # Application definition
@@ -65,6 +76,7 @@ MIDDLEWARE = [
     'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
+django_heroku.settings(locals())
 ROOT_URLCONF = 'PracticaWeb.urls'
 
 TEMPLATES = [
@@ -133,27 +145,6 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
-
-
-# Static files (CSS, JavaScript, Images)
-PROJECT_DIR = os.path.dirname(os.path.abspath(__file__))
-STATIC_ROOT = os.path.join(PROJECT_DIR, 'static')
-STATIC_URL = '/static/'
-
-# Extra places for collectstatic to find static files.
-STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'static'),
-)
-
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-
-MEDIA_ROOT = os.path.join(BASE_DIR, "media_cdn")
-
-MEDIA_URL = '/media/'
-
-
-# Activate Django-Heroku.
-django_heroku.settings(locals())
 
 
 LOGIN_REDIRECT_URL = '/forkilla'
