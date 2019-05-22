@@ -1,0 +1,141 @@
+{% extends 'forkilla/base.html' %}
+{% block content %}
+
+{% load static %}
+    <div class="container" style="width: 80%; height: 10%; background-color: rgba(47, 216, 40, 0.6); margin-left: 11%; margin-top: 1%; border-radius: 10%;">
+        <h1 style="margin-top: 2%; margin-left: 30%; color: rgba(255,255,255,1); font-size: 50px;">Details of Restaurant</h1>
+    </div>
+    <div class="menuche">
+        <div class="container">
+            <div class="menu1">
+
+                {% if city%} 
+                    {{city}}
+                {% endif %}
+                {% if restaurant %}
+                    <div class="menu-left">
+                        <img src="{% static 'images/3.jpg' %}" alt="" class="img-responsive" />
+                    </div>
+                    <div class="menu-right">
+                        <h3>{{restaurant.name}} </h3>
+                        <p>{{restaurant.category}}</p>
+                        <ul class="list ins1">
+                            <li>Description: <span>{{restaurant.menu_description}}</span></li>
+                            <li>Rate: <span>{{restaurant.rate}}</span></li>
+                            <li>Restaurant number:  <span>{{restaurant.restaurant_number}}</span></li>
+                            <li>Price average: <span>{{restaurant.price_average}}</span></li>
+                            <li>Address: <span> {{restaurant.address}}</span></li>
+                            <li>Capacity: <span>{{restaurant.restaurant_capacity}}</span></li>
+                        </ul>
+                       <div class="more" >
+                        <form action="{% url 'reservation'%}" method="get">
+                            <button type="submit" name="reservation" value={{restaurant.restaurant_number}} style="width: 98%; background: #2FD828; color: #FFF; margin-bottom: 3 %;"> Reserva <span> <img src="{% static 'images/reserva.png' %}"></span> </button>
+                        </form>
+                        </div>
+
+                    </div>
+               
+                {% else %}
+                    <p>No restaurants are available.</p>
+                {% endif %}
+
+
+                
+                <div class="clearfix"> </div>
+            </div>
+           
+        </div>
+
+    </div>
+
+
+    <div class="container" style="width: 80%; height: 10%; background-color: rgba(47, 216, 40, 0.6); margin-left: 11%; margin-top: 1%; border-radius: 10%;">
+        <h1 style="margin-top: 2%; margin-left: 40%; color: rgba(255,255,255,1); font-size: 50px;">Reviews</h1>
+
+        
+    </div>  
+
+
+    <!-- //news -->
+<!-- customer -->
+    <div class="customer">
+        <div class="container">
+            <h3>User Says</h3>
+            <div class="customer-grids">
+                <ul id="flexiselDemo1">       
+
+                    {% if msg %}
+          
+                        {% for m in msg %}
+
+                        <li> 
+                            <div class="customer-grid">
+                            <p> Comment: {{ m.message }}</p>
+                            <h4>User: {{ m.user }}  <span> Rating: {{ m.rating}}</span></h4>
+                            </div>
+                        </li>    
+                        {% endfor %}
+
+                    {% else %}
+                        There aren't any reviews till now
+                    {% endif %}
+                    </form>  
+                </ul>
+
+                <script type="text/javascript">
+                            $(window).load(function() {
+                                $("#flexiselDemo1").flexisel({
+                                    visibleItems: 3,
+                                    animationSpeed: 1000,
+                                    autoPlay: true,
+                                    autoPlaySpeed: 3000,            
+                                    pauseOnHover: true,
+                                    enableResponsiveBreakpoints: true,
+                                    responsiveBreakpoints: { 
+                                        portrait: { 
+                                            changePoint:480,
+                                            visibleItems: 1
+                                        }, 
+                                        landscape: { 
+                                            changePoint:640,
+                                            visibleItems:3
+                                        },
+                                        tablet: { 
+                                            changePoint:768,
+                                            visibleItems: 3
+                                        }
+                                    }
+                                });
+                                
+                            });
+                    </script>
+                    <script type="text/javascript" src="{% static 'js/jquery.flexisel.js' %}"></script>
+            </div>
+        </div>
+    </div>
+
+
+    
+    {% if viewedrestaurants %}
+     <div class="footer"  style="margin-top: 2%">
+        <div class="container">
+            <div class="footer-grids">
+                <div class="col-md-3 footer-grid">
+                    <p>Your last viewed Restaurants</p> <br>
+                    <form action="{% url 'reservation'%}" method="get">
+                     {% for restaurant in viewedrestaurants.restaurantinsertdate_set.all|slice:"5"%}
+                    <a href="{% url 'details' restaurant.restaurant.restaurant_number%}">   {{restaurant.restaurant.name}} </a> ({{restaurant.restaurant.rate}}) :  {{restaurant.restaurant.menu_description}}
+                    <button type="submit" name="reservation" value={{restaurant.restaurant_number}} style="width: 98%; background: #2FD828; color: #FFF; margin-bottom: 5%;"> Reserva <span> <img src="{% static 'images/reserva.png' %}"></span> </button>
+                    <br>
+                {% endfor %}
+                 </form>
+                </div>                
+                <div class="clearfix"> </div>
+            </div>
+        </div>
+    </div>
+    <div class="clear"> </div>
+     {% endif %}
+
+
+{% endblock content %}

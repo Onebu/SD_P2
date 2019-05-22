@@ -1,0 +1,96 @@
+{% extends 'forkilla/base.html' %}
+
+{% block content %}
+
+
+
+
+<script type="text/javascript">
+function search(){
+    var request = [];
+    var ips = ["localhost:8000"];
+
+    var category = document.getElementById("category").value;
+    var city = document.getElementById("city").value;
+    var price_average = document.getElementById("price_average").value;
+
+    for (var i=0 ;  i<ips.length; i++){
+        request.push(
+            $.ajax(
+                {
+                    beforeSend: function() { $("#result").empty() },
+                    url: 'http://'+ips[i]+'/api/restaurants/?format=json&category='+category+'&city='+city+'&price_average='+price_average,
+                    type: 'GET',
+                    dataType : 'json',
+                    error: function(jqXHR, exception){
+                        var msg = "ERROR";
+                    },
+                    success: function(data){
+                        if (data.results.length == 0){
+                            $("#result").append("<br>Not found")
+                        }
+                        for (var j=0; j < data.results.length; j++){
+                            restaurant = "<br>Name: " + data['results'][j]['name']
+                                       + "<br>Category: " + data['results'][j]['category']
+                                       + "<br>City: " + data['results'][j]['city']
+                                       +"<br>Price average: " + data['results'][j]['price_average']
+                            $("#result").append(restaurant)
+                        }
+                    }
+                }
+            )
+        )
+    }
+}
+</script>
+
+
+<div class="banner">
+  
+        <div class="banner-info">
+            <div class="baner-inf" style="margin-left: 15%; width: 40%; margin-top: -10%; border-radius: 20px;">
+                <h1> Comparator </h2>
+                 {% if categories %}
+                        Select category<br>
+                        <select name="category" id="category">
+                            {% for category in categories %}
+                                <option value="{{category.category}}">{{category.category}}</option>
+                            {% endfor %}
+                        </select>
+                    {% endif %}
+
+                    {% if categories %}
+                        <br><br>Select city<br>
+                        <select name="city" id="city">
+                            {% for city in cities %}
+                                <option value="{{city.city}}">{{city.city}}</option>
+                            {% endfor %}
+                        </select>
+                    {% endif %}
+
+                    {% if restaurants %}
+                        <br><br>Select maximum price<br>
+                        <select name="price_average" id="price_average">
+                            <option value="5">5</option>
+                            <option value="10">10</option>
+                            <option value="20">20</option>
+                            <option value="40">40</option>
+                            <option value="80">80</option>
+                            <option value="150">150</option>
+                            <option value="300">300</option>
+                            <option value="500">500</option>
+                        </select>
+                    {% endif %}
+                        
+                    <br><br><button type="button" id="compare" class="btn btn-secondary" onclick="search()">Compare</button>
+
+                    <div id="result"></div>
+
+            </div>
+        </div>
+                        
+    </div>
+
+
+
+{% endblock %}

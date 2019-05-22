@@ -1,0 +1,174 @@
+{% extends 'forkilla/base.html' %}
+{% block content %}
+
+{% load static %}
+
+<div class="banner">
+            <!-- Slider-starts-Here -->
+        <script src="{% static 'js/responsiveslides.min.js' %}"></script>
+         <script>
+            // You can also use "$(window).load(function() {"
+            $(function () {
+              // Slideshow 4
+              $("#slider3").responsiveSlides({
+                auto: true,
+                pager: false,
+                nav: false,
+                speed: 500,
+                namespace: "callbacks",
+                before: function () {
+                  $('.events').append("<li>before event fired.</li>");
+                },
+                after: function () {
+                  $('.events').append("<li>after event fired.</li>");
+                }
+              });
+        
+            });
+          </script>
+            <!--//End-slider-script -->
+            <div  id="top" class="callbacks_container">
+
+                <ul class="rslides" id="slider3">
+                    <li>
+                        <div class="banner-info">
+                            <div class="baner-inf">
+                                <h1>Hello!</h1>
+                                <p>Short Of Time? Come And Have A Tasty Pasta!</p>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="banner-info1">
+                            <div class="baner-inf">
+                                <h1>At Once</h1>
+                                <p>You Will Notice That We Are Waiting For You!</p>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="banner-info2">
+                            <div class="baner-inf">
+                                <h1>An Ideal</h1>
+                                <p>Place To Spend A Happy Evening</p>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+        
+    </div>
+<!-- //banner -->
+
+    <div class="banner">
+
+
+
+        {% if promoted %}
+        <div class="container" style="width: 70%; height: 10%; background-color: rgba(47, 216, 40, 0.8); margin-left: 15%; margin-top: 1%; border-radius: 10%;">
+            <h1 style="margin-top: 2%; margin-left: 30%; color: rgba(255,255,255,1); font-size: 50px;">Promoted Restaurant</h1>
+        </div>
+            {% if restaurants %}
+            <div class="container" style="margin-left: 15%;">
+                    <div class="rowLing">
+                    {% for restaurant in restaurants %}
+
+
+                          <div class="columnLing">
+                       
+                                <div class="banner-bottom-grd back" style="width: 70%; height: 30%;">
+                                    
+                                    <p>{{restaurant.name}}: <span>  {{restaurant.category}}</span> </p>
+                                    <div class="clearfix"> </div>
+                                </div>
+
+                                <div>
+                                <img src="{% static 'res/33.jpeg' %}" class="img-responsive"  style="width: relative; height: relative;">
+                                </div>
+
+                                <p class="debitis">{{restaurant.menu_description}}  <span> {{restaurant.rate}}</span></p>
+                                <div class="more" style="margin-bottom: 5%;">
+                                    <a href="{% url 'details' restaurant.restaurant_number%}" >More details</a>
+                                </div>
+
+                        </div>
+
+                       
+                     {% endfor %}
+                     </div>
+            {% else %}
+                <p>No restaurants are available.</p>
+            {% endif %}
+
+                
+                <div class="clearfix"> </div>
+
+            </div>
+        
+    </div>
+    {% else %}
+    <div class="banner"  >
+
+        <div class="container" style="width: 70%; height: 10%; background-color: rgba(47, 216, 40, 0.6); margin-left: 15%; margin-top: 1%; border-radius: 10%;">
+            <h1 style="margin-top: 2%; margin-left: 30%; color: rgba(255,255,255,0.7); font-size: 50px;">Restaurants</h1>
+        </div>
+            {% if alert %}
+                <script>
+                    alert('{{ alert }}');
+                </script>
+            {% endif %}
+         <form action="{% url 'reservation'%}" method="get">
+             
+                <div class="container" style=" margin-left: 15%; ">
+                    <div class="rowLing2">
+                     {% if restaurants %}
+                     {% for restaurant in restaurants %}
+                        <div class="columnLing2">
+                            <div class="banner-bottom-grd back" style="width: 70%; height: 30%;">
+                                
+                                <p>{{restaurant.name}} <span>  {{restaurant.category}}</span> </p>
+                                <div class="clearfix"> </div>
+                            </div>
+                            <p class="debitis">{{restaurant.menu_description}}  <span> {{restaurant.rate}}</span></p>
+                            <div class="more">
+                                <a href="{% url 'details' restaurant.restaurant_number%}"> More Details </a>
+                            </div>
+                            <div class="more" >
+                                <button type="submit" name="reservation" value={{restaurant.restaurant_number}} style="width: 70%; background: #2FD828; color: #FFF; margin-bottom: 5%;"> Reserva <span> <img src="{% static 'images/reserva.png' %}"></span> </button>
+                            </div>
+                        </div>           
+                    
+                    {% endfor %}
+                     {% else %}
+                         <p>No restaurants are available.</p>
+                    {% endif %}
+                </div>
+            </div>
+        </form>
+    </div>
+{% endif %}
+<div class="footer"  style="margin-top: 15%">
+    {% if viewedrestaurants %}
+
+        <div class="container">
+            <div class="footer-grids">
+                <div class="col-md-3 footer-grid">
+                    <p>Your last viewed Restaurants</p> <br>
+                    <form action="{% url 'reservation'%}" method="get">
+                     {% for restaurant in viewedrestaurants.restaurantinsertdate_set.all|slice:"5"%}
+                    <a href="{% url 'details' restaurant.restaurant.restaurant_number%}">   {{restaurant.restaurant.name}} </a> ({{restaurant.restaurant.rate}}) :  {{restaurant.restaurant.menu_description}}
+                    <button type="submit" name="reservation" value={{restaurant.restaurant_number}} style="width: 98%; background: #2FD828; color: #FFF; margin-bottom: 5%;"> Reserva <span> <img src="{% static 'images/reserva.png' %}"></span> </button>
+                    <br>
+                {% endfor %}
+                 </form>
+                </div>                
+                <div class="clearfix"> </div>
+            </div>
+        </div>
+
+    <div class="clear"> </div>
+     {% endif %}
+    </div>
+
+{%  endblock content %}

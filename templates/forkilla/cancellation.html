@@ -1,0 +1,32 @@
+
+{% extends 'forkilla/base.html' %}
+{% block content %}
+
+{% load static %}
+
+
+
+    <div class="banner">
+  
+        <div class="banner-info">
+            <div class="baner-inf" style="margin-left: 15%; width: 50%; margin-top: -10%; border-radius: 20px;">
+
+            	<div class="container" style="width: 80%; height: 10%; ; margin-left: 10%; margin-top: 1%; border-radius: 10%;">
+                	<h1 style="margin-top: 2%;  color: rgba(255,255,255,1); font-size: 30px; margin-bottom: 5%;">Do you really want to cancel the reservation of  {{resv.restaurant.name}} at {{ resv.get_human_slot }}?</h1>
+            	</div>
+				    <form method="POST" >
+				        {% csrf_token %}
+				        {{ form.as_ul }}
+				        <button type="submit" style="width: 98%; background: #2FD828; color: #FFF; margin-bottom: 5%; margin-top: 4%;">  <span> Yes </span> </button>
+				    </form>
+                <button type="submit" style="width: 98%; background: #2FD828; color: #FFF; margin-bottom: 5%; margin-top: 4%;"><a href="{% url 'index' %}">Maybe not </a></button>
+
+
+            </div>
+        </div>
+                        
+    </div>
+ 
+{% endblock %}
+
+

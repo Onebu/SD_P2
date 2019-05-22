@@ -1,0 +1,29 @@
+{% extends "forkilla/base.html" %}
+
+{% block content %}
+
+
+
+    <div class="banner">
+  
+        <div class="banner-info">
+            <div class="baner-inf" style="margin-left: 15%; width: 40%; margin-top: -10%; border-radius: 20px;">
+			    <h1> Advanced Search </h2>
+			    <form method="POST" >
+			        {% csrf_token %}
+			        {% if  error %}
+			            {{ error }} error
+			        {% endif %}
+			        {{ form.as_ul }}
+			        <button type="submit" >Search</button>
+			    </form>
+
+
+            </div>
+        </div>
+                        
+    </div>
+
+{% endblock %}
+
+

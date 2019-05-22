@@ -1,0 +1,118 @@
+
+<!DOCTYPE html>
+
+{% load static %}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title> Forkilla </title>
+
+    <!-- for-mobile-apps -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="Pasta Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template, 
+    Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
+    <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
+            function hideURLbar(){ window.scrollTo(0,1); } </script>
+    <!-- //for-mobile-apps -->
+    <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet" type="text/css" media="all" />
+    <link href="{% static 'css/style.css' %}" rel="stylesheet" type="text/css" media="all" />
+    <!-- js -->
+    <script src="{% static 'js/jquery-1.11.1.min.js' %}"></script>
+    <!-- //js -->
+    <!-- start-smoth-scrolling -->
+    <script type="text/javascript" src="{% static 'js/move-top.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/easing.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/easing.js' %}"></script>
+    <script type="text/javascript">
+        jQuery(document).ready(function($) {
+            $(".scroll").click(function(event){     
+                event.preventDefault();
+                $('html,body').animate({scrollTop:$(this.hash).offset().top},1000);
+            });
+        });
+    </script>
+    <!-- start-smoth-scrolling -->
+    <link href='http://fonts.useso.com/css?family=Raleway:400,100,200,300,500,600,700,800,900' rel='stylesheet' type='text/css'>
+
+   
+</head>
+
+<body>
+    <div class="header">
+        <div class="container">
+            <div class="header-nav">
+                <nav class="navbar navbar-default">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand"  href="{% url 'restaurants' %}" ><i class="glyphicon glyphicon-cutlery" aria-hidden="true"></i><span>F</span>orkilla</a>
+                    </div>
+
+                    <div class="collapse navbar-collapse nav-wil" id="bs-example-navbar-collapse-1">
+                        {% if user.is_authenticated %}
+                             <ul class="nav navbar-nav">
+                                <li class="hvr-bounce-to-bottom"><a>{{user.username}}</a></li>
+                                <li class="hvr-bounce-to-bottom"><a href="{% url 'logout' %}">Log Out</a></li>
+                                <li class="hvr-bounce-to-bottom"><a href="{% url 'restaurants' %}">Restaurants</a></li>
+                                <li class="hvr-bounce-to-bottom"><a href="{% url 'reservation_list' %}">My Reservation</a></li>
+                                <li style="margin-top: 20px;" >
+                                    <form action="{% url 'restaurants'%}" method="GET">
+                                      {% csrf_token %}
+                                        <input type="text" name="rest" placeholder="Search">
+                                          <button type="submit" style="margin: right;">  </button>
+                                    </form>
+                                </li>
+                            </ul>
+                        {% else %}
+                            <ul class="nav navbar-nav">
+                                <li class="hvr-bounce-to-bottom"><a href="{% url 'register' %}">Sign Up</a></li>
+                                <li class="hvr-bounce-to-bottom"><a href="{% url 'login' %}">Login</a></li>
+                                <li style="margin-top: 20px;" >
+                                    <form action="{% url 'restaurants'%}" method="GET">
+                                      {% csrf_token %}
+                                        <input type="text" name="rest" placeholder="Search">
+                                          <button type="submit" style="margin: right;">  <span class="glyphicon glyphicon-search"></span></button>
+                                    </form>
+                                </li>
+                            </ul>
+                        {% endif %}
+                        
+                    </div>
+
+                    {% block nav %}
+                        <ul id="nav" style="margin:right; ">
+                            {% block index %}<a href="{% url 'index' %}">Forkilla/</a>{% endblock %}
+                            {% block city %}<a href="{% url 'restaurants' city %}">{{city}}/</a>{% endblock %}
+                            {% block category %}<a href="{% url 'restaurants' city category%}">{{category}}/</a> {% endblock %}
+                            {{restaurants.name}}
+                        </ul>
+                    {% endblock nav %}
+
+                </nav>
+
+       <div class="more" >
+        <form action="{% url 'advancedSearch'%}" method="get">
+            <button type="submit" name="search"  style="width: 98%; background: #2FD828; color: #FFF; margin-bottom: 3 %;"> Advanced Search <span> <img src="{% static 'images/reserva.png' %}"></span> </button>
+        </form>
+       </div>
+            </div>
+        </div>
+    </div>
+     <!-- ##### Header Area Start ##### -->
+        {% block content %}
+        {% endblock content %}
+
+
+
+
+
+        <script src="{% static 'js/bootstrap.js' %}"> </script>
+
+</body>
+</html>

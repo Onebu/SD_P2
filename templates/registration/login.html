@@ -1,0 +1,39 @@
+{% extends 'forkilla/base.html' %}
+{% block content %}
+
+{% load static %}
+
+
+
+    <div class="banner">
+  
+        <div class="banner-info">
+            <div class="baner-inf" style="margin-left: 15%; width: 40%; margin-top: -10%; border-radius: 20px;">
+
+            {% if form.errors %}
+                <p class="error">Sorry, that's not a valid username or password</p>
+              {% endif %}
+              <div class="container" style="width: 40%; height: 10%; ; margin-left: 20%; margin-top: 1%; border-radius: 10%;">
+                <h1 style="margin-top: 2%; margin-left: 30%; color: rgba(255,255,255,1); font-size: 60px; margin-bottom: 5%;">Login</h1>
+            </div>
+
+                <form method="POST">
+                    {% csrf_token %}
+                    {{ form.as_ul }}
+
+                    <button type="submit" style="width: 98%; background: #2FD828; color: #FFF; margin-bottom: 5%; margin-top: 4%;">  <span> Login In</span> </button>
+                </form>
+                <form action="{% url 'restaurants' %}">
+                    <button style="width: 98%; background: #2FD828; color: #FFF; margin-bottom: 5%;">  <span> Continue as Guest</span> </button>
+                    
+                </form>
+                <form action="{% url 'register' %}">
+                    <button style="width: 98%; background: #2FD828; color: #FFF; margin-bottom: 5%;">  <span> Register Now</span> </button>
+                </form>
+
+            </div>
+        </div>
+                        
+    </div>
+ 
+{% endblock %}

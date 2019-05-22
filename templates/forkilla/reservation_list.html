@@ -1,0 +1,54 @@
+{% extends "forkilla/base.html" %}
+{% block content %}
+
+<div class="container" style="width: 80%; height: 10%; background-color: rgba(47, 216, 40, 0.6); margin-left: 11%; margin-top: 1%; border-radius: 10%;">
+        <h1 style="margin-top: 2%; margin-left: 30%; color: rgba(255,255,255,1); font-size: 50px;">My Reserved Restaurants</h1>
+    </div>
+    <div class="history">
+        <div class="container">
+            <div class="col-md-6 history-left"> 
+                <h3>Past Reservation</h3>
+
+                    {% for r in past %}
+
+                        <div class="history-left-grid">
+                            <p><i class="glyphicon glyphicon-calendar" aria-hidden="true"></i>{{ r.day }}: {{ r.time_slot }}</p>
+                            <h4>ID : {{ r.restaurant.restaurant_number }} People : {{ r.num_people }}</h4>
+                            <p class="aut">{{r.restaurant}}</p>
+
+                            <div class="more">
+                                <a href="{% url 'review' r.restaurant.restaurant_number %}">Give a review </a>
+                            </div>
+                        </div>
+
+
+                        {% endfor %}
+                
+            </div>
+            <div class="col-md-6 history-right">
+                <h3>Future Reservation</h3>
+
+                    {% for r in future %}
+
+                        <div class="history-left-grid">
+                            <p><i class="glyphicon glyphicon-calendar" aria-hidden="true"></i>{{ r.day }}: {{ r.time_slot }}</p>
+                            <h4>ID : {{ r.restaurant.restaurant_number }} People : {{ r.num_people }}</h4>
+                            <p class="aut">{{r.restaurant}}</p>
+                            <a href="{% url 'review' r.restaurant.restaurant_number %}">Give a review </a>
+                            <a href="{% url 'cancellation' r.id %}">cancellation </a>   
+                        </div>
+
+
+                        {% endfor %}
+            </div>
+            <div class="clearfix"> </div>
+        </div>
+    </div>
+
+
+
+
+
+    
+
+{% endblock content %}

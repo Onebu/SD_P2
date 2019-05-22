@@ -1,0 +1,223 @@
+[
+  {
+    "model": "forkilla.Restaurant",
+    "pk": 1,
+    "fields": {
+      "restaurant_number": "09186777",
+      "name": "Only Tapas",
+      "menu_description" :"TAPAS",
+      "price_average" : "30",
+      "is_promot" : "False",
+      "rate" : "10",
+      "category" : "Medi",
+      "city": "Barcelona",
+      "address": "Les Rambles, 33",
+      "country": "Spain",
+      "restaurant_capacity": 40
+    }
+  },
+   {
+    "model": "forkilla.Restaurant",
+    "pk": 2,
+    "fields": {
+      "restaurant_number": "09186666",
+      "name": "Only Pinxos",
+      "menu_description" :"PINXOS",
+      "price_average" : "130.33",
+      "is_promot" : "False",
+      "rate" : "9.6",
+      "category" : "Basq",
+      "city": "Barcelona",
+      "address": "Gran Via de les Corts Catalanes, 495",
+      "country": "Spain",
+      "restaurant_capacity": 240
+    }
+  },
+  {
+    "model": "forkilla.Restaurant",
+    "pk": 3,
+    "fields": {
+      "restaurant_number": "09186667",
+      "name": "Hoshin",
+      "menu_description" :"TAPAS",
+      "price_average" : "30.33",
+      "is_promot" : "True",
+      "rate" : "9.8",
+      "category" : "Japa",
+      "city": "Barcelona",
+      "address": "Gran Via de les Corts Catalanes, 305",
+      "country": "Spain",
+      "restaurant_capacity": 120
+    }
+  },
+  {
+    "model": "forkilla.Restaurant",
+    "pk": 4,
+    "fields": {
+      "restaurant_number": "09186668",
+      "name": "Sichuan",
+      "menu_description" :"TAPAS",
+      "price_average" : "30.33",
+      "is_promot" : "False",
+      "rate" : "9.7",
+      "category" : "Chin",
+      "city": "Barcelona",
+      "address": "Gran Via de les Corts Catalanes, 35",
+      "country": "Spain",
+      "restaurant_capacity": 120
+    }
+  },
+  {
+    "model": "forkilla.Restaurant",
+    "pk": 5,
+    "fields": {
+      "restaurant_number": "09186679",
+      "name": "Agut",
+      "menu_description" :"TAPAS",
+      "price_average" : "20.33",
+      "is_promot" : "False",
+      "rate" : "9.3",
+      "category" : "Medi",
+      "city": "Barcelona",
+      "address": "Nou de la rambla, 20",
+      "country": "Spain",
+      "restaurant_capacity": 80
+    }
+  },
+  {
+    "model": "forkilla.Restaurant",
+    "pk": 6,
+    "fields": {
+      "restaurant_number": "09186619",
+      "name": "Lasarte",
+      "menu_description" :"TAPAS",
+      "price_average" : "50.20",
+      "is_promot" : "False",
+      "rate" : "9.2",
+      "category" : "Medi",
+      "city": "Sevilla",
+      "address": "Nou de la rambla, 30",
+      "country": "Spain",
+      "restaurant_capacity": 80
+    }
+  },
+  {
+    "model": "forkilla.Restaurant",
+    "pk": 7,
+    "fields": {
+      "restaurant_number": "09186629",
+      "name": "CanBoneta",
+      "menu_description" :"TAPAS",
+      "price_average" : "47.20",
+      "is_promot" : "True",
+      "rate" : "9.2",
+      "category" : "Medi",
+      "city": "Bilbao",
+      "address": "Les Rambles, 30",
+      "country": "Spain",
+      "restaurant_capacity": 80
+    }
+  },
+  {
+    "model": "forkilla.Restaurant",
+    "pk": 8,
+    "fields": {
+      "restaurant_number": "09186639",
+      "name": "Gresca",
+      "menu_description" :"TAPAS",
+      "price_average" : "109.20",
+      "is_promot" : "True",
+      "rate" : "9.4",
+      "category" : "Medi",
+      "city": "Madrid",
+      "address": "L'Antiga Esquerra de l'Eixample,23",
+      "country": "Spain",
+      "restaurant_capacity": 80
+    }
+  },
+  {
+    "model": "forkilla.Restaurant",
+    "pk": 9,
+    "fields": {
+      "restaurant_number": "09186649",
+      "name": "Tickets",
+      "menu_description" :"TAPAS",
+      "price_average" : "70.20",
+      "is_promot" : "True",
+      "rate" : "9.2",
+      "category" : "Medi",
+      "city": "Bilbao",
+      "address": "L'Antiga Esquerra de l'Eixample,53",
+      "country": "Spain",
+      "restaurant_capacity": 80
+    }
+  },
+  {
+    "model": "forkilla.Restaurant",
+    "pk": 10,
+    "fields": {
+      "restaurant_number": "09186659",
+      "name": "Alkimia",
+      "menu_description" :"TAPAS",
+      "price_average" : "20.20",
+      "is_promot" : "True",
+      "rate" : "9.2",
+      "category" : "BBQ",
+      "city": "Granada",
+      "address": "L'Antiga Esquerra de l'Eixample,93",
+      "country": "Spain",
+      "restaurant_capacity": 80
+    }
+  },
+  {
+    "model": "forkilla.Restaurant",
+    "pk": 11,
+    "fields": {
+      "restaurant_number": "09186159",
+      "name": "Pakta",
+      "menu_description" :"TAPAS",
+      "price_average" : "20.20",
+      "is_promot" : "True",
+      "rate" : "9.2",
+      "category" : "BBQ",
+      "city": "Madrid",
+      "address": "Gran via, 424",
+      "country": "Spain",
+      "restaurant_capacity": 80
+    }
+  },
+  {
+    "model": "forkilla.Restaurant",
+    "pk": 12,
+    "fields": {
+      "restaurant_number": "09186259",
+      "name": "Can Ros",
+      "menu_description" :"TAPAS",
+      "price_average" : "70.20",
+      "is_promot" : "True",
+      "rate" : "8.2",
+      "category" : "Crep",
+      "city": "Madrid",
+      "address": "Gran via, 480",
+      "country": "Spain",
+      "restaurant_capacity": 80
+    }
+  },
+  {
+    "model": "forkilla.Restaurant",
+    "pk": 13,
+    "fields": {
+      "restaurant_number": "09186359",
+      "name": "Moments",
+      "menu_description" :"TAPAS",
+      "price_average" : "55.20",
+      "is_promot" : "True",
+      "rate" : "8.2",
+      "category" : "Grek",
+      "city": "Sevilla",
+      "address": "Gran via, 500",
+      "country": "Spain",
+      "restaurant_capacity": 80
+    }
+  }
+]

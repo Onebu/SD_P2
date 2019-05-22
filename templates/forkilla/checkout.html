@@ -1,0 +1,43 @@
+{% extends 'forkilla/base.html' %}
+{% block content %}
+
+{% load static %}
+
+
+
+    <div class="banner">
+  
+        <div class="banner-info">
+            <div class="baner-inf" style="margin-left: 15%; width: 40%; margin-top: -10%; border-radius: 20px;">
+
+                    {%  if checkout %}
+                        {% if num_people %}
+                            <h2>Restaurant reserved</h2>
+                            {{ restaurant.name }} <br>
+                            Reserved for {{ num_people }} people
+
+                        {%  endif %}
+                        {% if rate %}
+                            <h2>Restaurant reviewed</h2>
+                            {{ restaurant.name }} <br>
+                            Rate star rated
+                        {% endif %}
+                    {% endif %}
+                    {% if failed %}
+                        Reservation failed
+                    {% endif %}
+                    {% if Z %}
+                        Reservation Cancelled
+                    {% endif %}
+                    <h3><a href="{% url 'index' %}">Back to Home Page </a></h3>
+
+
+            </div>
+        </div>
+                        
+    </div>
+ 
+{% endblock %}
+
+
+
